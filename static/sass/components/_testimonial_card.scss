@@ -1,0 +1,91 @@
+@use "../base/index" as *;
+@use "../partials/variables" as *;
+
+
+// testimonial-card css start 
+.testimonial-card{
+    overflow: hidden;
+    box-shadow: $shadow;
+    .user-photo-wrap{
+        transform: rotate(45deg);
+        overflow: hidden;
+        border-radius: 24px;
+        width: 130px;
+        height: 130px;
+        margin-left: -20px;
+        margin-top: -16px;
+        .user-photo{
+            transform: rotate(-45deg);
+            width: 140%;
+            height: 140%;
+            object-fit: cover
+        }
+    }
+    .ratting{
+        position: absolute;
+        right: 1.2rem;
+        top: 7rem;
+        .rating-score{font-size: .87rem; color: $dark;}
+        .rating-stars{
+            font-size: .7rem;
+            color: $primary;
+        }
+    }
+    .quote{
+        position: absolute;
+        right: 1.2rem;
+        top:1.6rem;
+        color: $primary;
+        font-size: 2rem;
+    }
+    .card-title{color: $dark !important; }
+}
+
+
+
+@media (max-width: 1200px) {
+    .testimonial-card{
+        .user-photo-wrap{
+            border-radius: 20px;
+            width: 120px;
+            height: 120px;
+            // margin-left: -20px;
+            // margin-top: -16px;
+        }
+        .ratting{
+            right: 1rem;
+            top: 6.4rem;
+            .rating-score{font-size: .85rem;}
+            .rating-stars{ font-size: .68rem; }
+        }
+        .quote{
+            right: 1rem;
+            top:1.4rem;
+            font-size: 1.6rem;
+        }
+        .card-title, .card-text{font-size: .75rem; }
+    }
+}
+
+@media (max-width: 576px) {
+    .testimonial-card{
+        .user-photo-wrap{
+            border-radius: 16px;
+            // width: 120px;
+            // height: 120px;
+            // margin-left: -20px;
+            // margin-top: -16px;
+        }
+        .ratting{
+            // right: 1rem;
+            top: 6.4rem;
+            .rating-score{font-size: .75rem;}
+            .rating-stars{ font-size: .62rem; }
+        }
+        .quote{
+            // right: 1rem;
+            top:1.4rem;
+            font-size: 1.4rem;
+        }
+    }
+}

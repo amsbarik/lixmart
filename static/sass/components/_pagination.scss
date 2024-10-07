@@ -1,0 +1,22 @@
+
+@use "../base/index" as *;
+@use "../partials/variables" as *;
+
+
+//pagination start 
+.pagination{
+    .page-item.active{
+        .page-link{
+            background: $primary;
+            border: 1px solid $primary; 
+            color: $white;
+        }
+    }
+    .page-link{
+        color: $dark;
+        &:focus{
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    }
+}

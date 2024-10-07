@@ -1,0 +1,88 @@
+@use "../base/" as *;
+@use "../partials/" as *;
+
+.checkout{
+    .checkout-wrap{
+        .social-login-btn{
+            padding: 0 .5rem;
+            font-size: 1.3rem;
+            color: $white;
+            span{
+                color: $white;
+                padding-bottom: 10px;
+                font-size: 1rem;
+                font-weight: $medium;
+                padding: 10px;
+            }
+            &.facebook{background: #0866FF;}
+            &.youtube{background: #FF0000;}
+        }
+
+        .sub-heading{font-size: 1.3rem; font-weight: $medium;}
+        hr{border: 1px solid $primary;}
+
+        .form-check-input{
+            &:focus{
+                outline: none;
+                box-shadow: none;
+            }
+        }
+        textarea{
+            color: lighten($color: $dark, $amount: 30)
+        }
+
+        .order-summary{
+            caption{
+                color: $dark;
+                span{font-weight: $semibold; font-size: 1.2rem; margin-left: .5rem;}
+            }
+            .card-title{font-size: .8rem;}
+
+            .card{
+                height: 4.5rem;
+                overflow: hidden;
+            }
+        }
+        
+    }
+}
+
+
+@media (max-width: 992px) {
+    .checkout{
+        .checkout-wrap{
+    
+            .cash-delivery-img{width: 10rem; margin-top: -1.5rem;}
+            .order-summary{
+                margin-top: 2rem;
+                .apply{margin-top: .2rem;}
+            }
+            
+        }
+    }
+}
+
+
+@media (max-width: 576px) {
+    .checkout{
+        .checkout-wrap{
+            .social-login-btn{
+                padding: .3rem .5rem;
+                font-size: .8rem;
+                span{
+                    font-size: .78rem;
+                    padding: 5px;
+                }
+            }
+            .heading{font-size: 1.4rem;}
+            .sub-heading{font-size: 1rem;}
+            .cash-delivery-img{width: 8rem; }
+            .order-summary{
+                margin-top: 2rem;
+                .apply{margin-top: .2rem;}
+                .order-btn{font-size: .9rem;}
+            }
+            
+        }
+    }
+}

@@ -1,0 +1,300 @@
+@use "../base/index" as *;
+@use "../partials/variables" as *;
+
+
+// product slider start 5 items
+.slider-container {
+    position: relative;
+    // width: 80%;
+    // overflow: hidden;
+    margin: 0 auto;
+    .slider-wrapper {
+        display: flex;
+        // transition: transform 0.5s ease-in-out;
+        transition: transform 0.5s ease;
+        .product-card {
+            flex: 0 0 calc(20% - 10px); /* Adjust card width minus margin */
+            max-width: calc(20% - 10px); /* 100% / 5 = 20% */
+            box-sizing: border-box;
+            margin: 0 12px; /* Adjust margin */
+            // height: 200px;
+        }
+    }
+
+    .prev-btn, .next-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: $bg-primary-80;
+        color: white;
+        border: none;
+        padding: 2px 6px 6px 6px ;
+        cursor: pointer;
+        font-size: 32px;
+    }
+    .prev-btn {
+        left: 0;
+    }
+    .next-btn {
+        right: 0;
+    }
+}
+
+
+// slider 3 items  start
+.slider-3items-container {
+    position: relative;
+    // width: 80%;
+    // overflow: hidden;
+    margin: 0 auto;
+    .slider-3items-wrapper {
+        display: flex;
+        // transition: transform 0.5s ease-in-out;
+        transition: transform 0.5s ease;
+        .product-card {
+            flex: 0 0 calc(33.3333% - 10px); /* Adjust card width minus margin */
+            max-width: calc(33.3333% - 10px); /* 100% / 5 = 20% */
+            box-sizing: border-box;
+            margin: 0 12px; /* Adjust margin */
+            /* height: 200px; */
+        }
+    }
+
+    .prev-btn, .next-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: $bg-primary-80;
+        color: white;
+        border: none;
+        padding: 2px 6px 6px 6px ;
+        cursor: pointer;
+        font-size: 32px;
+    }
+    .prev-btn {
+        left: 0;
+    }
+    .next-btn {
+        right: 0;
+    }
+}
+
+
+// item6-card slider cs start
+.six-card-slider-container {
+    position: relative;
+    margin: 0 auto;
+    .six-card-slider-wrapper {
+        display: flex;
+        // transition: transform 0.5s ease-in-out;
+        transition: transform 0.5s ease;
+        .six-card {
+            flex: 0 0 calc(16.6666% - 10px); /* Adjust card width minus margin */
+            max-width: calc(16.6666% - 10px); /* 100% / 5 = 20% */
+            box-sizing: border-box;
+            margin: 0 12px; /* Adjust margin */
+            /* height: 200px; */
+        }
+    }
+
+    .prev-btn, .next-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: $bg-primary-80;
+        color: white;
+        border: none;
+        padding: 2px 6px 6px 6px ;
+        cursor: pointer;
+        font-size: 32px;
+        z-index: 2;
+    }
+    .prev-btn {
+        left: 0;
+    }
+    .next-btn {
+        right: 0;
+    }
+}
+
+
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .slider-container {
+        .slider-wrapper {
+            .product-card {
+                flex: 0 0 calc(25% - 10px);
+                max-width: calc(25% - 10px);
+                // margin: 0 12px; /* Adjust margin */
+            }
+        }
+    }
+
+    // slider 3 items  start
+    .slider-3items-container {
+        .slider-3items-wrapper {
+            .product-card {
+                flex: 0 0 calc(38% - 10px); /* Adjust card width minus margin */
+                max-width: calc(38% - 10px); /* 100% / 5 = 20% */
+                margin: 0 10px; /* Adjust margin */
+                /* height: 200px; */
+            }
+        }
+    }
+
+    // testimonial-card slider cs start
+    .testimonial-slider-container {
+        .testimonial-slider-wrapper {
+            .testimonial-card {
+                flex: 0 0 calc(20% - 10px); /* Adjust card width minus margin */
+                max-width: calc(20% - 10px); /* 100% / 5 = 20% */
+                margin: 0 12px; /* Adjust margin */
+                /* height: 200px; */
+            }
+        }
+    }
+
+}
+
+
+@media (max-width: 992px) {
+    .slider-container {
+        .slider-wrapper {
+            .product-card {
+                flex: 0 0 calc(33.333% - 10px);
+                max-width: calc(33.333% - 10px);
+                margin: 0 8px; /* Adjust margin */
+            }
+        }
+        .prev-btn, .next-btn {
+            padding: 2px 6px 6px 6px ;
+            font-size: 24px;
+        }
+    }
+
+    // slider 3 items  start
+    .slider-3items-container {
+        .slider-3items-wrapper {
+            .product-card {
+                flex: 0 0 calc(54% - 10px); /* Adjust card width minus margin */
+                max-width: calc(54% - 10px); /* 100% / 5 = 20% */
+                margin: 0 8px; /* Adjust margin */
+                /* height: 200px; */
+            }
+        }
+        .prev-btn, .next-btn {
+            padding: 2px 6px 6px 6px ;
+            font-size: 24px;
+        }
+    }
+
+    // testimonial-card slider cs start
+    .testimonial-slider-container {
+        .testimonial-slider-wrapper {
+            .testimonial-card {
+                flex: 0 0 calc(25% - 10px); /* Adjust card width minus margin */
+                max-width: calc(25% - 10px); /* 100% / 5 = 20% */
+                margin: 0 8px; /* Adjust margin */
+                /* height: 200px; */
+            }
+        }
+        .prev-btn, .next-btn {
+            padding: 2px 6px 6px 6px ;
+            font-size: 24px;
+        }
+    }
+
+}
+
+
+@media (max-width: 768px) {
+    .slider-container {
+        .slider-wrapper {
+            .product-card {
+                flex: 0 0 calc(46% - 10px);
+                max-width: calc(46% - 10px);
+                margin: 0 8px; /* Adjust margin */
+            }
+        }
+    }
+
+    // slider 3 items  start
+    .slider-3items-container {
+        .slider-3items-wrapper {
+            .product-card {
+                flex: 0 0 calc(80% - 10px); /* Adjust card width minus margin */
+                max-width: calc(80% - 10px); /* 100% / 5 = 20% */
+                margin: 0 8px; /* Adjust margin */
+                /* height: 200px; */
+            }
+        }
+    }
+
+    // testimonial-card slider cs start
+    .testimonial-slider-container {
+        .testimonial-slider-wrapper {
+            .testimonial-card {
+                flex: 0 0 calc(33.33% - 10px); /* Adjust card width minus margin */
+                max-width: calc(33.333% - 10px); /* 100% / 5 = 20% */
+                margin: 0 8px; /* Adjust margin */
+                /* height: 200px; */
+            }
+        }
+    }
+
+}
+
+
+@media (max-width: 576px) {
+    .slider-container {
+        .slider-wrapper {
+            .product-card {
+                flex: 0 0 calc(50% - 10px);
+                max-width: calc(50% - 10px);
+                margin: 0 6px; /* Adjust margin */
+            }
+        }
+
+        .prev-btn, .next-btn {
+            padding: 2px 5px 5px 5px ;
+            font-size: 20px;
+        }
+    }
+
+    // slider 3 items  start
+    .slider-3items-container {
+        .slider-3items-wrapper {
+            .product-card {
+                flex: 0 0 calc(100% - 10px); /* Adjust card width minus margin */
+                max-width: calc(100% - 10px); /* 100% / 5 = 20% */
+                margin: 0 6px; /* Adjust margin */
+                /* height: 200px; */
+            }
+        }
+        .prev-btn, .next-btn {
+            padding: 2px 5px 5px 5px ;
+            font-size: 20px;
+        }
+    }
+
+    // testimonial-card slider cs start
+    .testimonial-slider-container {
+        .testimonial-slider-wrapper {
+            .testimonial-card {
+                flex: 0 0 calc(50% - 10px); /* Adjust card width minus margin */
+                max-width: calc(50% - 10px); /* 100% / 5 = 20% */
+                margin: 0 6px; /* Adjust margin */
+                /* height: 200px; */
+            }
+        }
+        .prev-btn, .next-btn {
+            padding: 2px 5px 5px 5px ;
+            font-size: 20px;
+        }
+    }
+    
+
+}

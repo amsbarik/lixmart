@@ -1,0 +1,100 @@
+@use "../base/index" as *;
+@use "../partials/variables" as *;
+
+
+.product-card{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    .card-img-top{
+        width: 100%;
+        height: 15.875rem;
+        object-fit: cover;
+    }
+    .rating{
+        position: absolute;
+        left: .95rem;
+        bottom: .7rem;
+        background: #ffffff96;
+        padding: .2rem .62rem;
+        font-size: .8rem;
+        color: $dark;
+        border-radius: .2rem;
+        i{color: $primary; font-size: .78rem;}
+    }
+    .card-body{
+        .card-title{
+            color: lighten($color: $dark, $amount: 40);
+            &:hover{text-decoration: underline;}
+        }
+        .price{
+            font-size: 1rem;
+            color: $dark;
+            font-weight: $semibold;
+            .price-delete{color: $danger; font-weight: $font-light; font-size: .875rem}
+        }
+    }
+}
+
+
+// media css start 
+@media (max-width:1400px) {
+    .product-card{
+        .card-img-top{
+            height: 13.625rem;
+        }
+    }
+}
+
+@media (max-width:1200px) {
+    .product-card{
+        .card-img-top{
+            height: 14.375rem;
+        }
+        .rating{
+            left: .75rem;
+            bottom: .5rem;
+            padding: .15rem .52rem;
+            font-size: .75rem;
+            i{font-size: .72rem;}
+        }
+        .card-body{
+            .price{
+                font-size: .9rem;
+                .price-delete{ font-size: .75rem}
+            }
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+    .product-card{
+        .card-img-top{
+            height: 14.875rem;
+        }
+    }
+}
+
+
+
+@media (max-width:576px) {
+    .product-card{
+        .card-img-top{
+            height: 10.813rem;
+        }
+        .rating{
+            left: .7rem;
+            bottom: .4rem;
+            padding: .14rem .46rem;
+            font-size: .7rem;
+            i{font-size: .68rem;}
+        }
+        .card-body{
+            padding: .5rem;
+            .price{
+                font-size: .77rem;
+                margin: .1rem 0 .5rem 0 !important;
+                .price-delete{ font-size: .7rem}
+            }
+        }
+    }
+}

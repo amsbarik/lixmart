@@ -1,0 +1,268 @@
+@use "../base/index" as *;
+@use "../partials/variables" as *;
+
+// btn class 
+.btn{
+    color: $white;
+    font-weight: 600;
+    padding: .3rem 1.6rem .4rem 1.6rem;
+    border: none;
+    border-radius: 10px;
+    // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+}
+.btn-primary{
+    background: $primary;
+    transition: .3s;
+    &:hover{
+        color: $white;
+        background: darken($color: $primary, $amount: 6);
+    }
+}
+.btn-dark{
+    background: $dark;
+    transition: .3s;
+    &:hover{
+        color: $white;
+        background: darken($color: $dark, $amount: 6);
+    }
+}
+.btn-white{
+    background: $white;
+    color: $dark;
+    transition: .3s;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    &:hover{
+        color: $white;
+        background: $primary;
+    }
+}
+// bg class
+.bg-primary{
+    background: $primary !important;
+}
+.bg-secondary{
+    background: $secondary !important;
+}
+.bg-dark{
+    background: $dark !important;
+}
+.bg-danger{
+    background: $danger !important;
+}
+.bg-white{
+    background: $white !important;
+}
+.bg-light{
+    background: $light !important;
+}
+.bg-info{
+    background: $info !important;
+}
+.bg-warning{
+    background: $warning !important;
+}
+
+
+
+// text class 
+.text{
+    color: $text-color;
+    font-size: 1rem;
+    line-height: 1.6rem;
+}
+.card-text{
+    color: $text-color;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+}
+.text-primary{
+    color: $primary !important;
+}
+.text-dark{
+    color: $dark !important;
+}
+.text-warning{
+    color: $dark !important;
+}
+.text-light{
+    color: $light !important;
+}
+.text-light{
+    color: $white !important;
+}
+.text-danger{
+    color: $danger !important;
+}
+.text-info{
+    color: $info !important;
+}
+
+// link class 
+.text-link{
+    color: $primary;
+    &:hover{text-decoration: underline;}
+}
+
+.link{
+    color: $primary;
+    font-size: 0.875rem;
+    &:hover{
+        color: darken($color: $primary, $amount: 10)
+    }
+}
+.link-light{
+    color: darken($color: $light, $amount: 40 ) !important;
+}
+
+// heading class 
+.heading{
+    font-weight: $bold;
+    color: $heading-color;
+    font-size: 1.6rem;
+}
+
+.sub-heading{
+    font-weight: 300;
+    color: $heading-color;
+}
+
+.section-padding{
+    padding: 24px
+}
+.section-heading{
+    font-weight: $medium;
+    position: relative;
+    // text-align: center;
+    color: $heading-color;
+    font-size: 1.7rem;
+    text-transform: capitalize;
+    &::before{
+        content: " ";
+        width: 100%;
+        height: 3px;
+        background: $bg-deep;
+        position: absolute;
+        left: 0;
+        bottom: -14px;
+    }
+    &::after{
+        content: " ";
+        width: 25%;
+        height: 3px;
+        background: $primary;
+        position: absolute;
+        left: 0;
+        // transform: translateX(-50%);
+        bottom: -14px;
+    }
+}
+
+// title class
+.card-title{
+    font-weight: $semibold;
+    color: $dark;
+    font-size: .875rem;
+}
+
+
+.hr{
+    border: none;
+    height: 1px; 
+    background-color: lighten($color: $dark, $amount: 16);
+    opacity: .1;
+    margin: 1rem 0;
+}
+.hr-light{
+    @extend .hr;
+    background-color: lighten($color: $dark, $amount: 40);
+}
+
+.silder-bg-end{
+    position: relative;
+    &::after{
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 12px;
+        top: 0;
+        right: 0;
+        background: $bg-white;
+        z-index: 1;
+    }
+}
+
+// media start
+@media (max-width: 1200px) {
+    .section-heading{font-size: 1.4rem;}
+    .heading{font-size: 1.4rem;}
+    .card-title{font-size: .75rem;}
+    .btn{
+        font-size: .875rem;
+        border-radius: 8px;
+        
+    }
+}
+
+
+@media (max-width: 992px) {
+    .section-heading{font-size: 1.1rem;}
+    .heading{font-size: 1.2rem;}
+    // .sub-heading{font-size: 1.2rem;}
+    .card-title{font-size: .7rem;}
+    .btn{
+        font-size: .75rem;
+        border-radius: 4px;
+        
+    }
+
+    // .text{
+    //     color: $text-color;
+    //     font-size: 1rem;
+    //     line-height: 1.6rem;
+    // }
+    .card-text{
+        color: $text-color;
+        font-size: 0.75rem;
+        line-height: 1.2rem;
+    }
+    // .link{font-size: .78rem;}
+}
+
+
+
+@media (max-width: 768px) {
+    .heading{font-size: 1rem;}
+    .sub-heading{font-size: .9rem;}
+    .section-heading{ font-size: 1rem;}
+    .btn {font-size: .7rem;}
+    .text{font-size: .75rem;}
+    .card-text{font-size: .7rem;}
+    // .card-title{font-size: .8rem !important; }
+    .link{font-size: .78rem;}
+
+}
+
+
+@media (max-width: 768px) {
+    .heading{font-size: .9rem;}
+    .sub-heading{font-size: .87rem;}
+    .section-heading{ font-size: .9rem;
+        &::before{
+            height: 2px;
+            bottom: -10px;
+        }
+        &::after{
+            height: 2px;
+            bottom: -10px;
+        }
+    }
+    // .btn {font-size: .7rem;}
+    // .text{font-size: .7rem;}
+    // .card-text{font-size: .7rem;}
+    // .card-title{font-size: .8rem !important; }
+    // .link{font-size: .75rem;}
+
+}
+
+

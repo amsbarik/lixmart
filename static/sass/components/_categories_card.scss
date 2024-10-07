@@ -1,0 +1,31 @@
+@use "../base/index" as *;
+@use "../partials/variables" as *;
+
+.categories-card{
+    background: $bg-light;
+    padding: 1.5rem;
+    &:hover{
+        .img-icon{
+            filter: grayscale(0);
+        }
+    }
+    .img-icon{
+        width: 50%;
+        filter: grayscale(100%);
+    }
+    .card-title{
+        margin-top: 1rem;
+        font-size: 1rem;
+        transition: .4s;
+        &:hover{
+            // color: $primary;
+            text-decoration: underline;
+        }
+    }
+    .item-qty{margin-top: .5rem; color: $dark-light;
+        small{
+            background: $bg-deep;
+            padding: .2rem .6rem;
+        }
+    }
+}
