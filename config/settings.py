@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.user_auth',
     'apps.admin_panel',
+    'apps.categories',
+    'apps.products',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -73,6 +75,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                # custom context_processors
+                'apps.categories.context_processors.categories',
             ],
         },
     },

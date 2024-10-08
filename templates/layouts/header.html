@@ -8,7 +8,7 @@
             <div class=" header-wrap d-flex justify-content-between position-relative">
                 
                 <div class="logo-lg">
-                    <a class="" href="index.html" >
+                    <a class="" href="{% url 'index' %}" >
                         <img src="{% static 'img/lixmart-logo.png' %}" class="object-fit-cover logo" height="100%" alt="logo">
                     </a>
                 </div>
@@ -34,7 +34,7 @@
     
             </div>
         </div>
-        
+
         <!-- main categories start -->
         <nav class="navbar navbar-expand-lg py-0 ">
             <div class="container">
@@ -66,85 +66,48 @@
                                 </div>
                             </form>
                         </div>
-                                
-                        <!-- main categories  -->
-                        <ul class="navbar-nav main-categories justify-content-center flex-grow-1 p-0 m-0">
+                            
 
-                            <li class="nav-item mx-2 mx-xl-3" data-bs-dismiss="offcanvas" data-bs-dismiss="offcanvas">
-                                <a class="nav-link text-uppercase p-0" aria-current="page" href="#"> Home </a>
-                                
-                            </li>
+                        <!-- main-categories start  -->
+                        <ul class="navbar-nav main-categories justify-content-center flex-grow-1 p-0 m-0">
                             <li class="nav-item mx-2 mx-xl-3" data-bs-dismiss="offcanvas">
-                                <a class="nav-link text-uppercase p-0" aria-current="page" href="#"> Panjabi <i class="fa-solid fa-angle-down"></i></a>
-                                <!-- sub category start  -->
-                                <ul class="sub-categories">
-                                    <li class="sub-item" data-bs-dismiss="offcanvas" ><a href="#" class="text-uppercase ">Long Panjabi</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">short Panjabi</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">Premium panjabi</a></li>
-                                </ul>
+                                <a class="nav-link text-uppercase p-0" href="{% url 'index' %}">Home</a>
                             </li>
-                            <li class="nav-item mx-2 mx-xl-3" data-bs-dismiss="offcanvas">
-                                <a class="nav-link text-uppercase p-0" aria-current="page" href="#"> t-shirt <i class="fa-solid fa-angle-down"></i></a>
-                                <!-- sub category start  -->
-                                <ul class="sub-categories">
-                                    <li class="sub-item" data-bs-dismiss="offcanvas" ><a href="#" class="text-uppercase ">short sleep</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">long sleep</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">casual</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">formal</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item mx-2 mx-xl-3" data-bs-dismiss="offcanvas">
-                                <a class="nav-link text-uppercase p-0" aria-current="page" href="#"> Polo shirt <i class="fa-solid fa-angle-down"></i></a>
-                                <!-- sub category start  -->
-                                <ul class="sub-categories">
-                                    <li class="sub-item" data-bs-dismiss="offcanvas" ><a href="#" class="text-uppercase ">Long polo</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">short polo</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">Premium polo</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item mx-2 mx-xl-3" data-bs-dismiss="offcanvas">
-                                <a class="nav-link text-uppercase p-0" aria-current="page" href="#">  shirt <i class="fa-solid fa-angle-down"></i></a>
-                                <!-- sub category start  -->
-                                <ul class="sub-categories">
-                                    <li class="sub-item" data-bs-dismiss="offcanvas" ><a href="#" class="text-uppercase ">Long shirt</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">short shirt</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">Premium shirt</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item mx-2 mx-xl-3" data-bs-dismiss="offcanvas">
-                                <a class="nav-link text-uppercase p-0" aria-current="page" href="#">  shoe <i class="fa-solid fa-angle-down"></i></a>
-                                <!-- sub category start  -->
-                                <ul class="sub-categories">
-                                    <li class="sub-item" data-bs-dismiss="offcanvas" ><a href="#" class="text-uppercase ">Long shirt</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">short shirt</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">Premium shirt</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item mx-2 mx-xl-3" data-bs-dismiss="offcanvas">
-                                <a class="nav-link text-uppercase p-0" aria-current="page" href="#">  Boxer <i class="fa-solid fa-angle-down"></i></a>
-                                <!-- sub category start  -->
-                                <ul class="sub-categories">
-                                    <li class="sub-item" data-bs-dismiss="offcanvas" ><a href="#" class="text-uppercase ">Long shirt</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">short shirt</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">Premium shirt</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item mx-2 mx-xl-3" data-bs-dismiss="offcanvas">
-                                <a class="nav-link text-uppercase p-0" aria-current="page" href="#">  Winter <i class="fa-solid fa-angle-down"></i></a>
-                                <!-- sub category start  -->
-                                <ul class="sub-categories">
-                                    <li class="sub-item" data-bs-dismiss="offcanvas" ><a href="#" class="text-uppercase ">Long shirt</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">short shirt</a></li>
-                                    <li class="sub-item" data-bs-dismiss="offcanvas"><a href="#" class="text-uppercase ">Premium shirt</a></li>
-                                </ul>
-                            </li>
-                        
+                            
+                            {% for category in categories %}
+                                {% if category.parent is None %}  <!-- Only show parent categories -->
+                                    <li class="nav-item mx-2 mx-xl-3" data-bs-dismiss="offcanvas">
+                                        <a class="nav-link text-uppercase p-0" href="{% url 'category_detail' category.slug %}">
+                                            {{ category.name }}
+                                            {% if category.children.exists %} 
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            {% endif %}
+                                        </a>
+                
+                                        <!-- Subcategories list -->
+                                        {% if category.children.exists %}
+                                        <ul class="sub-categories">
+                                            {% for subcategory in category.children.all %}
+                                                <li class="sub-item" data-bs-dismiss="offcanvas">
+                                                    <a href="{% url 'category_detail' subcategory.slug %}" class="text-uppercase">
+                                                        {{ subcategory.name }}
+                                                    </a>
+                
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endif %}
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
                         </ul>
+
+
                     </div>
                 </div>
             </div>
         </nav>
-        <!-- Navbar top end-->
+
     </div>
 
     <!-- nav bottom start  -->
@@ -177,3 +140,4 @@
 
 </header>
 <!--Main Navigation end-->
+

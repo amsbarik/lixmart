@@ -5,9 +5,9 @@ urlpatterns = [
     path('', views.index, name='index'),
     
     # admin panel urls
-    path('sliders/', views.top_silder_all, name='top_silder_all'),
-    path('sliders/form/', views.top_silder_form, name='top_silder_form'),
-    path('sliders/update/<int:pk>/', views.top_silder_form, name='top_silder_update'),
-    path('sliders/delete/<int:pk>/', views.top_silder_delete, name='top_silder_delete'),
+    path('sliders/', views.top_slider_all, name='top_slider_all'),
+    path('sliders/form/', views.top_slider_form, name='top_slider_form'),
+    path('slider/update/<int:pk>/', views.top_slider_form, name='top_slider_update'),
+    path('slider/delete/<int:pk>/', views.top_slider_delete, name='top_slider_delete'),
 ]
 

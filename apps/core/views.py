@@ -5,10 +5,17 @@ from django.contrib import messages
 from .forms import TopSliderForm
 from .models import TopSlider
 from apps.user_auth.views import is_superuser
+from apps.products.models import Category
 
 # Create your views here.
 def index(request):
-    return render(request, 'core/index.html')
+    top_sliders = TopSlider.objects.filter(is_active=True).order_by('order')
+    categories = Category.objects.order_by('created_at').all()
+    context = {
+        'top_sliders': top_sliders,
+        'categories': categories,
+    }
+    return render(request, 'core/index.html', context)
 
 
 
@@ -18,18 +25,18 @@ def index(request):
 
 
 # admin panel TopSlider views here ///////////////////////////////////
-@login_required
-@user_passes_test(is_superuser)
-def top_silder_all(request):
+# @login_required
+# @user_passes_test(is_superuser)
+def top_slider_all(request):
     top_sliders = TopSlider.objects.order_by('created_at').all()
     
-    return render(request, 'admin_panel/core/top_silder_all.html', {'top_sliders': top_sliders})
+    return render(request, 'admin_panel/core/top_slider_all.html', {'top_sliders': top_sliders})
 
 
-# blog create & update form view 
-@login_required
-@user_passes_test(is_superuser)
-def top_silder_form(request, pk=0):
+# TopSlider create & update form view 
+# @login_required
+# @user_passes_test(is_superuser)
+def top_slider_form(request, pk=0):
     
     if request.method == 'GET':
         if pk == 0:
@@ -38,7 +45,7 @@ def top_silder_form(request, pk=0):
             top_slider = TopSlider.objects.get(id=pk)
             form = TopSliderForm(instance=top_slider)
             
-        return render(request, 'admin_panel/core/top_silder_form.html', {'form': form})
+        return render(request, 'admin_panel/core/top_slider_form.html', {'form': form})
     
     else:
         if pk == 0:
@@ -50,14 +57,14 @@ def top_silder_form(request, pk=0):
         if form.is_valid():
             form.save()
             
-        return redirect('top_silder_all')
+        return redirect('top_slider_all')
 
 
-# blog delete view 
-@login_required
-@user_passes_test(is_superuser)
-def top_silder_delete(request, pk):
+# TopSlider delete view 
+# @login_required
+# @user_passes_test(is_superuser)
+def top_slider_delete(request, pk):
     top_silder = TopSlider.objects.get(id=pk)
     top_silder.delete()
-    return redirect('top_silder_all')
+    return redirect('top_slider_all')
 

@@ -1,0 +1,313 @@
+{% extends 'admin_panel/layouts/master.html' %}
+{% load custom_filters %}
+
+{% block title %} Team Member {% endblock title %}
+
+{% block content %} 
+
+{% include 'components/message.html' %}
+<!-- search start  -->
+<div class="row g-3 mb-4 align-items-center justify-content-between">
+    <div class="col-auto">
+        <!-- <h1 class="app-page-title mb-0">Orders</h1> -->
+		<h1 class="h3 mb-3"><strong style="font-weight:700">Developer</strong> Team</h1>
+
+    </div>
+    <div class="col-auto">
+         <div class="page-utilities">
+            <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+                <div class="col-auto">
+                    <form class="table-search-form row gx-1 align-items-center">
+                        <div class="col-auto">
+                            <input type="text" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="Search">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn app-btn-secondary">Search</button>
+                        </div>
+                    </form>
+                    
+                </div><!--//col-->
+                <div class="col-auto">
+                    
+                    <select class="form-select w-auto" >
+                          <option selected value="option-1">All</option>
+                          <option value="option-2">This week</option>
+                          <option value="option-3">This month</option>
+                          <option value="option-4">Last 3 months</option>
+                          
+                    </select>
+                </div>
+                <div class="col-auto">						    
+                    <a class="btn app-btn-secondary" href="#">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                        </svg>
+                        Download CSV
+                    </a>
+                </div>
+                <div class="col-auto">
+                    <a href="{% url 'developer_add' %}" class="btn btn-primary ">New Developer </a>
+                </div>
+            </div><!--//row-->
+        </div><!--//table-utilities-->
+    </div><!--//col-auto-->
+</div>
+
+
+<nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+    <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
+    <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">Full Stack</a>
+    <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#orders-pending" role="tab" aria-controls="orders-pending" aria-selected="false">Back End</a>
+    <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">Front End</a>
+</nav>
+
+<!-- member_id = models.CharField(max_length=10, unique=True, blank=True, null=True)
+    profile_img = models.ImageField(null=True, blank=True, upload_to='developer_photo/')
+    mobile = models.CharField(max_length=20)
+    email = models.EmailField()
+    nid = models.CharField(max_length=30)
+    passport = models.CharField(max_length=30, null=True, blank=True)
+    gender = models.ForeignKey(Gender, related_name='gender', on_delete=models.CASCADE)
+    address = models.CharField(max_length=200)
+    nationality = models.CharField(max_length=50, blank=True, null=True)
+    religion = models.CharField(max_length=50, blank=True, null=True)
+    birth_date = models.DateField(blank=True, null=True)
+    blood = models.CharField(max_length=6,blank=True, null=True)
+    join_date = models.DateTimeField()
+    rejoin_date = models.DateTimeField(blank=True, null=True)
+    role = models.ForeignKey(Role, related_name='employee_role', on_delete=models.CASCADE)
+    skill = models.TextField()
+    
+    resume = models.FileField(upload_to='developer_resume/', default='resume.pdf')
+    portfolio_url = models.URLField(max_length=200, blank=True, null=True, default='www.barik.me')
+    github_url = models.URLField(max_length=200, blank=True, null=True, default='www.github.com')
+    linkedin_url = models.URLField(max_length=200, blank=True, null=True, default='www.linkedin.com')
+    facebook_url = models.URLField(max_length=200, blank=True, null=True, default='www.facebook.com')
+    
+    intro = models.TextField(blank=True, null=True, default='I am ')
+     -->
+
+<div class="tab-content" id="orders-table-tab-content">
+
+    <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+        <div class="app-card app-card-orders-table shadow-sm mb-5">
+            <div class="app-card-body">
+                <div class="table-responsive">
+
+                    <table class="table app-table-hover mb-0 text-left">
+                        <thead>
+                            <tr>
+                                <th class="cell">DevID</th>
+                                <!-- <th class="cell">Created At</th> -->
+                                <th class="cell">Join Date</th>
+                                <th class="cell">Name</th>
+                                <th class="cell">Mobile</th>
+                                <th class="cell">Email</th>
+                                <th class="cell">Role</th>
+                                <th class="cell">Skill</th>
+                                <th class="cell">Status</th>
+                                <th class="cell">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for developer in team %}
+                            <tr>
+                                <td class="cell">{{ developer.member_id }}</td>
+                                <!-- <td class="cell"><span>{{ developer.join_date | abbreviate_month }}</span><span class="note">{{ developer.join_date | time:"h:i A" }}</span></td> -->
+                                <td class="cell">{{ developer.join_date | abbreviate_month }}</td>
+                                <td class="cell">{{ developer.name }}</td>
+                                <td class="cell">{{ developer.mobile }}</td>
+                                <td class="cell">{{ developer.email }}</td>
+                                <td class="cell">{{ developer.role }}</td>
+                                <td class="cell">{{ developer.skill }}</td>
+                                <td class="cell"><span class="badge bg-success">{{ developer.is_active }}</span></td>
+                                
+                                <td class="cell">
+                                    <!-- <a class="btn-sm app-btn-secondary" href="#">View</a> -->
+                                    <a href="{% url 'developer_update' developer.id %}" class="text-primary px-1"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a href="{% url 'developer_delete' developer.id %}" class="text-danger px-1"><i class="fa-regular fa-trash-can"></i></a> 
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div><!--//table-responsive-->
+               
+            </div><!--//app-card-body-->		
+        </div><!--//app-card-->
+
+        <nav class="app-pagination">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav><!--//app-pagination-->
+        
+    </div><!--//tab-pane-->
+    
+    <!-- paid start  -->
+    <div class="tab-pane fade" id="orders-paid" role="tabpanel" aria-labelledby="orders-paid-tab">
+        <div class="app-card app-card-orders-table mb-5">
+            <div class="app-card-body">
+                <div class="table-responsive">
+                    
+                    <table class="table app-table-hover mb-0 text-left">
+                        <thead>
+                            <tr>
+                                <th class="cell">DevID</th>
+                                <!-- <th class="cell">Created At</th> -->
+                                <th class="cell">Join Date</th>
+                                <th class="cell">Name</th>
+                                <th class="cell">Mobile</th>
+                                <th class="cell">Email</th>
+                                <th class="cell">Role</th>
+                                <th class="cell">Skill</th>
+                                <th class="cell">Status</th>
+                                <th class="cell">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for developer in team %}
+                            <tr>
+                                <td class="cell">{{ developer.member_id }}</td>
+                                <!-- <td class="cell"><span>{{ developer.join_date | abbreviate_month }}</span><span class="note">{{ developer.join_date | time:"h:i A" }}</span></td> -->
+                                <td class="cell">{{ developer.join_date | abbreviate_month }}</td>
+                                <td class="cell">{{ developer.name }}</td>
+                                <td class="cell">{{ developer.mobile }}</td>
+                                <td class="cell">{{ developer.email }}</td>
+                                <td class="cell">{{ developer.role }}</td>
+                                <td class="cell">{{ developer.skill }}</td>
+                                <td class="cell"><span class="badge bg-success">{{ developer.is_active }}</span></td>
+                                
+                                <td class="cell">
+                                    <!-- <a class="btn-sm app-btn-secondary" href="#">View</a> -->
+                                    <!-- <a href="{% url 'project_update' developer.id %}" class="text-primary px-1"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a href="{% url 'project_delete' developer.id %}" class="text-danger px-1"><i class="fa-regular fa-trash-can"></i></a> -->
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div><!--//table-responsive-->
+            </div><!--//app-card-body-->		
+        </div><!--//app-card-->
+    </div><!--//tab-pane-->
+    
+    <!-- pending start  -->
+    <div class="tab-pane fade" id="orders-pending" role="tabpanel" aria-labelledby="orders-pending-tab">
+        <div class="app-card app-card-orders-table mb-5">
+            <div class="app-card-body">
+                <div class="table-responsive">
+
+                    <table class="table app-table-hover mb-0 text-left">
+                        <thead>
+                            <tr>
+                                <th class="cell">DevID</th>
+                                <!-- <th class="cell">Created At</th> -->
+                                <th class="cell">Join Date</th>
+                                <th class="cell">Name</th>
+                                <th class="cell">Mobile</th>
+                                <th class="cell">Email</th>
+                                <th class="cell">Role</th>
+                                <th class="cell">Skill</th>
+                                <th class="cell">Status</th>
+                                <th class="cell">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for developer in team %}
+                            <tr>
+                                <td class="cell">{{ developer.member_id }}</td>
+                                <!-- <td class="cell"><span>{{ developer.join_date | abbreviate_month }}</span><span class="note">{{ developer.join_date | time:"h:i A" }}</span></td> -->
+                                <td class="cell">{{ developer.join_date | abbreviate_month }}</td>
+                                <td class="cell">{{ developer.name }}</td>
+                                <td class="cell">{{ developer.mobile }}</td>
+                                <td class="cell">{{ developer.email }}</td>
+                                <td class="cell">{{ developer.role }}</td>
+                                <td class="cell">{{ developer.skill }}</td>
+                                <td class="cell"><span class="badge bg-success">{{ developer.is_active }}</span></td>
+                                
+                                <td class="cell">
+                                    <!-- <a class="btn-sm app-btn-secondary" href="#">View</a> -->
+                                    <!-- <a href="{% url 'project_update' developer.id %}" class="text-primary px-1"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a href="{% url 'project_delete' developer.id %}" class="text-danger px-1"><i class="fa-regular fa-trash-can"></i></a> -->
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div><!--//table-responsive-->
+            </div><!--//app-card-body-->		
+        </div><!--//app-card-->
+    </div><!--//tab-pane-->
+
+    <!-- cancel start  -->
+    <div class="tab-pane fade" id="orders-cancelled" role="tabpanel" aria-labelledby="orders-cancelled-tab">
+        <div class="app-card app-card-orders-table mb-5">
+            <div class="app-card-body">
+                <div class="table-responsive">
+
+                    <table class="table app-table-hover mb-0 text-left">
+                        <thead>
+                            <tr>
+                                <th class="cell">DevID</th>
+                                <!-- <th class="cell">Created At</th> -->
+                                <th class="cell">Join Date</th>
+                                <th class="cell">Name</th>
+                                <th class="cell">Mobile</th>
+                                <th class="cell">Email</th>
+                                <th class="cell">Role</th>
+                                <th class="cell">Skill</th>
+                                <th class="cell">Status</th>
+                                <th class="cell">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for developer in team %}
+                            <tr>
+                                <td class="cell">{{ developer.member_id }}</td>
+                                <!-- <td class="cell"><span>{{ developer.join_date | abbreviate_month }}</span><span class="note">{{ developer.join_date | time:"h:i A" }}</span></td> -->
+                                <td class="cell">{{ developer.join_date | abbreviate_month }}</td>
+                                <td class="cell">{{ developer.name }}</td>
+                                <td class="cell">{{ developer.mobile }}</td>
+                                <td class="cell">{{ developer.email }}</td>
+                                <td class="cell">{{ developer.role }}</td>
+                                <td class="cell">{{ developer.skill }}</td>
+                                <td class="cell"><span class="badge bg-success">{{ developer.is_active }}</span></td>
+                                
+                                <td class="cell">
+                                    <!-- <a class="btn-sm app-btn-secondary" href="#">View</a> -->
+                                    <!-- <a href="{% url 'project_update' developer.id %}" class="text-primary px-1"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a href="{% url 'project_delete' developer.id %}" class="text-danger px-1"><i class="fa-regular fa-trash-can"></i></a> -->
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div><!--//table-responsive-->
+            </div><!--//app-card-body-->		
+        </div><!--//app-card-->
+    </div><!--//tab-pane-->
+
+</div><!--//tab-content-->
+
+
+
+
+{% endblock content %}

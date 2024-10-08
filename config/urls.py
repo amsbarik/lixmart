@@ -21,8 +21,13 @@ from django.conf import settings
 from django.conf.urls.static import static 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('apps.core.urls')),
+    path('dj-admin/', admin.site.urls),
+    path('admin/', include('apps.admin_panel.urls')),
+    
+    path('', include('apps.core.urls')), #core
+    path('user-auth/', include('apps.user_auth.urls')),
+    path('categories/', include('apps.categories.urls')),
+    path('products/', include('apps.products.urls')),
 ]
 
 #for media
