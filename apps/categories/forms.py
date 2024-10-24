@@ -15,6 +15,6 @@ class CategoryForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Save'))
-        # self.fields['category'].empty_label = 'Select Category'
+        self.fields['parent'].empty_label = 'Select one to create sub-category || Leave'
         
         

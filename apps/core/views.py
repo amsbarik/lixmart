@@ -2,19 +2,44 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib import messages
 
+from django.utils import timezone
+from datetime import timedelta
+
 from .forms import TopSliderForm
 from .models import TopSlider
 from apps.user_auth.views import is_superuser
-from apps.products.models import Category
+from apps.products.models import Category, Product
 
 # Create your views here.
 def index(request):
+    # Fetch active top sliders
     top_sliders = TopSlider.objects.filter(is_active=True).order_by('order')
-    categories = Category.objects.order_by('created_at').all()
+    
+    # Fetch all categories
+    categories = Category.objects.filter(is_active=True).order_by('created_at')
+
+    # Fetch best-selling products (top 10 by sales count)
+    best_selling_products = Product.objects.order_by('-sales_count')[:20]  # Get top 10 best-selling products
+
+    # Fetch new arrivals (products added in the last 30 days)
+    thirty_days_ago = timezone.now() - timedelta(days=30)
+    new_arrivals = Product.objects.filter(created_at__gte=thirty_days_ago).order_by('-created_at')
+    
+    # Fetch products from a specific category (e.g., Panjabi)
+    panjabi_category = Category.objects.get(slug='panjabi')  # Assuming 'panjabi' slug
+    panjabi_products = Product.objects.filter(category=panjabi_category)
+
+
     context = {
         'top_sliders': top_sliders,
         'categories': categories,
+        
+        'best_selling_products': best_selling_products,  # Add best-selling products to context
+        'new_arrivals': new_arrivals,  # Add new arrivals to context
+        'panjabi_products': panjabi_products,  # Pass Panjabi products to the template
+        
     }
+
     return render(request, 'core/index.html', context)
 
 
@@ -24,9 +49,10 @@ def index(request):
 
 
 
-# admin panel TopSlider views here ///////////////////////////////////
-# @login_required
-# @user_passes_test(is_superuser)
+# admin panel views here ///////////////////////////////////
+# Top all slider view 
+@login_required
+@user_passes_test(is_superuser)
 def top_slider_all(request):
     top_sliders = TopSlider.objects.order_by('created_at').all()
     
@@ -34,8 +60,8 @@ def top_slider_all(request):
 
 
 # TopSlider create & update form view 
-# @login_required
-# @user_passes_test(is_superuser)
+@login_required
+@user_passes_test(is_superuser)
 def top_slider_form(request, pk=0):
     
     if request.method == 'GET':
@@ -61,8 +87,8 @@ def top_slider_form(request, pk=0):
 
 
 # TopSlider delete view 
-# @login_required
-# @user_passes_test(is_superuser)
+@login_required
+@user_passes_test(is_superuser)
 def top_slider_delete(request, pk):
     top_silder = TopSlider.objects.get(id=pk)
     top_silder.delete()

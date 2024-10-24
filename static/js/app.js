@@ -122,7 +122,7 @@ document.querySelectorAll('.slider-wrapper').forEach((sliderWrapper, index) => {
 
 
 
-// panjabi 3 items slide js start
+// panjabi 3 items slide js start || this problem to cart js
 document.querySelectorAll('.slider-3items-wrapper').forEach((sliderWrapper, index) => {
     let productCards = sliderWrapper.querySelectorAll('.product-card');
     const prevBtn = sliderWrapper.closest('.slider-3items-container').querySelector('.prev-btn');
@@ -541,23 +541,84 @@ plusBtn.addEventListener('click', function () {
 let body = document.querySelector("body"); 
 let orderCartWrap = document.getElementById('orderCartWrap');
 
-function showOrderCart(){
-    orderCartWrap.classList.add('overlay')
-    orderCartWrap.delay('800')
-    orderCartWrap.fadeIn('500')
-    body.style.overflow = "hidden"
+// function showOrderCart(){
+//     orderCartWrap.classList.add('overlay')
+//     orderCartWrap.delay('800')
+//     orderCartWrap.fadeIn('500')
+//     body.style.overflow = "hidden"
+// }
+
+// function closeOrderCart(){
+//     orderCartWrap.classList.remove('overlay')
+//     orderCartWrap.delay('800')
+//     orderCartWrap.fadeOut('500')
+//     body.style.overflow = "auto"
+// }
+
+// Helper function to fade in an element
+function fadeIn(element, duration = 400) {
+    element.style.opacity = 0;
+    element.style.display = 'block';
+
+    let last = +new Date();
+    const tick = function() {
+        element.style.opacity = +element.style.opacity + (new Date() - last) / duration;
+        last = +new Date();
+
+        if (+element.style.opacity < 1) {
+            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+        }
+    };
+    tick();
 }
 
-function closeOrderCart(){
-    orderCartWrap.classList.remove('overlay')
-    orderCartWrap.delay('800')
-    orderCartWrap.fadeOut('500')
-    body.style.overflow = "auto"
+// Helper function to fade out an element
+function fadeOut(element, duration = 400) {
+    element.style.opacity = 1;
+
+    let last = +new Date();
+    const tick = function() {
+        element.style.opacity = +element.style.opacity - (new Date() - last) / duration;
+        last = +new Date();
+
+        if (+element.style.opacity > 0) {
+            (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+        } else {
+            element.style.display = 'none';
+        }
+    };
+    tick();
 }
+
+// Show cart popup
+function showOrderCart() {
+    orderCartWrap.classList.add('overlay');
+    fadeIn(orderCartWrap, 500);
+    body.style.overflow = "hidden";
+}
+
+// Hide cart popup
+function closeOrderCart() {
+    orderCartWrap.classList.remove('overlay');
+    fadeOut(orderCartWrap, 500);
+    body.style.overflow = "auto";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // order cart qty plus minus js start 
-
 const maxQty = 10;  // Replace this with your actual maximum quantity
 
 // Function to increase quantity

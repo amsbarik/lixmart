@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import DetailView  # Add this line
-from django.views.generic import ListView
+from django.views.generic import DetailView  
+# from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required, user_passes_test
 
-from apps.products.models import Category, Product  # Assuming you have a Product model
+from apps.products.models import Category, Product  # Assuming I have a Product model
 from .forms import CategoryForm
+from apps.user_auth.views import is_superuser
 
 # Create your views here.
 
 
 class CategoryDetailView(DetailView):
     model = Category
-    template_name = 'store/product_store.html'
+    template_name = 'products/product_store.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -52,9 +54,10 @@ class CategoryDetailView(DetailView):
 
 
 
-# admin panel Category views here ///////////////////////////////////
-# @login_required
-# @user_passes_test(is_superuser)
+# admin panel views here ///////////////////////////////////
+# all Category views
+@login_required
+@user_passes_test(is_superuser)
 def category_all(request):
     categories = Category.objects.order_by('created_at').all()
     
@@ -62,34 +65,8 @@ def category_all(request):
 
 
 # Category create & update form view 
-# @login_required
-# @user_passes_test(is_superuser)
-# def category_form(request, pk=0):
-    
-#     if request.method == 'GET':
-#         if pk == 0:
-#             form = CategoryForm()
-#         else:
-#             category = Category.objects.get(id=pk)
-#             form = CategoryForm(instance=category)
-            
-#         return render(request, 'admin_panel/categories/category_form.html', {'form': form})
-    
-#     else:
-#         if pk == 0:
-#             form = CategoryForm(request.POST, request.FILES)
-#         else:
-#             category = Category.objects.get(id=pk)
-#             form = CategoryForm(request.POST, request.FILES, instance=category)
-
-#         if form.is_valid():
-#             form.save()
-            
-#         return redirect('category_all')
-
-
-
-
+@login_required
+@user_passes_test(is_superuser)
 def category_form(request, pk=0):
     if request.method == 'GET':
         if pk == 0:
@@ -114,10 +91,9 @@ def category_form(request, pk=0):
             return render(request, 'admin_panel/categories/category_form.html', {'form': form})
 
 
-
 # Category delete view 
-# @login_required
-# @user_passes_test(is_superuser)
+@login_required
+@user_passes_test(is_superuser)
 def category_delete(request, pk):
     category = Category.objects.get(id=pk)
     category.delete()

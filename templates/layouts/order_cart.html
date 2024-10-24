@@ -1,75 +1,47 @@
+{% load static %}
+
 <!-- order-cart start -->
 <div class="order-cart-container">
         
     <div id="orderCartWrap" class="order-cart-wrap">
         <form action="">
-            <div  class="order-cart rounded-start-4 overflow-hidden z-3">
-                <div class="cart-top p-3 d-flex justify-content-between align-items-center mb-2" >
+            <div class="order-cart rounded-start-4 overflow-hidden z-3">
+                <div class="cart-top p-3 d-flex justify-content-between align-items-center mb-2">
                     <div class="d-flex align-items-center">
-                        <img src="asset/img/shopping-icon.png" alt="">
-                        <h5 class="card-title ms-3"> 2 Items</h5>
+                        <img src="{% static 'img/shopping-icon.png' %}" alt="">
+                        <h5 class="card-title ms-3">{{ cart|length }} Items</h5>
                     </div>
-                    <button class="btn p-0 close-btn" onclick="closeOrderCart()" role="button">Close</button>
+                    <button class="btn p-0 close-btn" onclick="closeOrderCart()">Close</button>
                 </div>
-
-                <!-- product items start1 -->
-                <div class="cart-item d-flex justify-content-between ">
-                    <!-- qty plus minus  -->
-                    <div class="qty-layout align-items-center text-center " style="min-width: 42px;">
-                        <button class="btn cart-plus text-dark" id="increaseBtn"><i class="fa-solid fa-sort-up"></i></button>
-                        <input type="cart-input text" id="qtyInput" class="form-control p-0 cart-input text-center border-0" value="1" readonly>
-                        <button class="btn cart-minus text-dark" id="decreaseBtn"><i class="fa-solid fa-sort-down"></i></button>
+            
+                <!-- product items start -->
+                {% for product_id, item in cart.cart.items %}
+                <div class="cart-item d-flex justify-content-between">
+                    <!-- qty plus minus -->
+                    <div class="qty-layout align-items-center text-center" style="min-width: 42px;">
+                        <button class="btn cart-plus text-dark"><i class="fa-solid fa-sort-up"></i></button>
+                        <input type="cart-input text" class="form-control p-0 cart-input text-center border-0" value="{{ item.quantity }}" readonly>
+                        <button class="btn cart-minus text-dark"><i class="fa-solid fa-sort-down"></i></button>
                     </div>
-
-                    <div class="card border-0 " >
+            
+                    <div class="card border-0">
                         <div class="row g-0">
-                          <div class="col-3">
-                            <img src="asset/img/product1.jpeg" class=" object-fit-cover" width="100%" height="100%" alt="...">
-                          </div>
-                          <div class="col-9">
-                            <div class="card-body py-0">
-                              <h5 class="card-title m-0">ELITE Quality Printed Panjabi I MP-193</h5>
-                              <p class="price m-0 p-0"><small class="text-dark">TK. 2950 <span class="text-danger text-decoration-line-through">TK. 2990</span></small></p>
-                              <p class="card-text m-0 p-0" style="margin-top: -5px !important;"><small class="text-body-secondary">Size: 39, Color: Black </small></p>
+                            <div class="col-3">
+                                <img src="{{ product.view_img.url }}" class="object-fit-cover" width="100%" height="100%" alt="...">
                             </div>
-                          </div>
+                            <div class="col-9">
+                                <div class="card-body py-0">
+                                    <h5 class="card-title m-0">{{ product.title }}</h5>
+                                    <p class="price m-0 p-0"><small class="text-dark">TK. {{ item.price }} </small></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <button class="btn p-0 pe-3 text-danger btn-delete" >&#10005;</button>
+            
+                    <button class="btn p-0 pe-3 text-danger btn-delete">&#10005;</button>
                 </div>
+                {% endfor %}
                 <!-- product items end -->
-
-                <!-- product items start2 -->
-                <div class="cart-item d-flex justify-content-between ">
-                    <!-- qty plus minus  -->
-                    <div class="qty-layout align-items-center text-center " style="min-width: 42px;">
-                        <button class="btn cart-plus text-dark" id="increaseBtn"><i class="fa-solid fa-sort-up"></i></button>
-                        <input type="cart-input text" id="qtyInput" class="form-control p-0 cart-input text-center border-0" value="1" readonly>
-                        <button class="btn cart-minus text-dark" id="decreaseBtn"><i class="fa-solid fa-sort-down"></i></button>
-                    </div>
-
-                    <div class="card border-0 " >
-                        <div class="row g-0">
-                          <div class="col-3">
-                            <img src="asset/img/product1.jpeg" class=" object-fit-cover" width="100%" height="100%" alt="...">
-                          </div>
-                          <div class="col-9">
-                            <div class="card-body py-0">
-                              <h5 class="card-title m-0">ELITE Quality Printed Panjabi I MP-193</h5>
-                              <p class="price m-0 p-0"><small class="text-dark">TK. 2950 <span class="text-danger text-decoration-line-through">TK. 2990</span></small></p>
-                              <p class="card-text m-0 p-0" style="margin-top: -5px !important;"><small class="text-body-secondary">Size: 39, Color: Black </small></p>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-
-                    <button class="btn p-0 pe-3 text-danger btn-delete" >&#10005;</button>
-                </div>
-                <!-- product items end -->
-
-                <div class="cart-btn rounded-2 overflow-hidden" onclick="closeOrderCart()" role="button" type="submit"><span class="btn-order rounded-start">Place Order</span> <span class="btn-order rounded-end" style="margin-left: -6px;"><i class="fa-solid fa-bangladeshi-taka-sign me-1"></i> 2700</span></div>
-
             </div>
         </form>
     </div>
@@ -79,10 +51,16 @@
     <!-- order card box start  -->
     <div class="order-cart-box position-fixed z-3" onclick="showOrderCart()" role="button">
         <div class="text-center">
-            <img src="asset/img/shopping-icon.png" alt="">
+            <img src="{% static 'img/shopping-icon.png' %}" alt="">
             <h5 class="m-0 px-2">5 items</h5>
         </div>
         <h6 class="text-center px-2 m-0"><i class="fa-solid fa-bangladeshi-taka-sign me-1"></i> 2700</h6>
     </div>
 </div>
 <!-- order-cart end -->
+
+
+
+
+
+

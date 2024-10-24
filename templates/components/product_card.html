@@ -1,0 +1,34 @@
+
+
+<div class="product-card card rounded border-0">
+    <a href="{% url 'product_details' slug=product.slug %}" class="position-relative">
+        <img src="{{ product.view_img.url }}" class="card-img-top" alt="...">
+        <div class="rating">  0.0 <i class="fa-solid fa-star"></i> | 00 </div>
+    </a>
+    
+    <div class="card-body">
+        <a href="{% url 'product_details' slug=product.slug %}">
+            <h5 class="card-title">{{ product.title }}</h5>
+        </a>
+        <p class="price my-3">{{ product.discount_price | floatformat:"-2" }} <span class="text-decoration-line-through price-delete">{{ product.price | floatformat:"-2" }}</span></p>
+        
+        <!-- <form class="text-center  mb-1" method="post" action="{% url 'add_to_cart' product.slug %}"> {% csrf_token %}
+            <button type="submit" class="btn btn-white add-to-cart-btn"  data-product-id="{{ product.id }}">Add to Cart</button>
+
+            <button class="btn add-to-cart-btn" data-product-id="{{ product.id }}">
+                Add to Cart
+            </button>
+
+
+        </form> -->
+       
+
+        <div class="text-center mb-1">
+            <button type="button" class="btn btn-white" onclick="addToCart('{{ product.slug }}')">Add to Cart</button>
+        </div>
+        
+
+        
+
+    </div>
+</div>

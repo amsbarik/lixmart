@@ -1,0 +1,13 @@
+<div class="categories-card six-card rounded">
+    <div class="d-flex justify-content-center">
+        {% if category.icon %}
+            <img src="{{ category.icon.url }}" class="img-icon" alt="{{ category.name }}">
+        {% endif %}
+    </div>
+    <a href="{% url 'category_detail' category.slug %}"> <!-- Link to category detail page -->
+        <h5 class="card-title text-center" title="Click for more">{{ category.name }}</h5>
+    </a>
+    <div class="item-qty text-center">
+        <small class="rounded-pill">{{ category.total_products }}</small>
+    </div>
+</div>

@@ -21,6 +21,10 @@
     {% block css %}
     <style> </style>
     {% endblock css %}
+
+
+    {% csrf_token %}
+
     
 
 </head>
@@ -60,6 +64,110 @@
     <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <!-- custom js link  -->
     <script src="{% static 'js/app.js' %}"></script>
+
+
+    <!-- AJAX for Adding to Cart js  -->
+  
+    
+<!--     
+    <script>
+        function addToCart(slug) {
+    // Construct the URL using the slug
+    const url = `{% url 'add_to_cart' 'slug_placeholder' %}`.replace('slug_placeholder', slug);
+
+    // Use fetch or another method to send a request to the URL
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'), // Ensure you send the CSRF token if required
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ /* any data you need to send */ })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response, e.g., update the cart popup
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+// Function to get the CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Check if this cookie string begins with the name we want
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+    </script> -->
+
+    
+    
+
+
+
+
+    <script>
+        function addToCart(slug) {
+    // Construct the CSRF token
+    const csrftoken = getCookie('csrftoken');
+    
+    const url = "{% url 'add_to_cart' 'slug_placeholder' %}";
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `slug=${encodeURIComponent(slug)}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert(data.message);  // Display success message
+        } else {
+            alert(data.message);  // Display error message
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);  // Handle errors
+    });
+}
+
+
+
+
+// Helper function to get the CSRF token from the cookies
+function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+    </script>
+
 
     <!-- block js  -->
     {% block js %}

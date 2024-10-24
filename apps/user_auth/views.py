@@ -16,8 +16,6 @@ def is_superuser(user):
     return user.is_superuser
 
 
-
-
 # user profile settings view /////////////////////////////////
 @login_required
 @user_passes_test(is_superuser)

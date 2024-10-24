@@ -1,7 +1,7 @@
 {% extends 'layouts/master.html' %}
 {% load static %}
 
-{% block title %} Store | Lixmart {% endblock title %}
+{% block title %} Products Store | Lixmart {% endblock title %}
 
 <!-- {% block css %}cs here {% endblock css %} -->
 
@@ -10,7 +10,7 @@
 {% block content %}
 
 <!-- products list start -->
-<section class="products-store pt-4 pb-5">
+<section class="products-store pt-4 pb-5" style="margin-top: 100px;">
     <div class="container">
         <div class="products-store-wrap">
             <div class="row ">
@@ -255,134 +255,12 @@
                         <!-- product-cards-wrap start  -->
                         <div class="row row-cols-2 row-cols-md-3 g-3 g-md-4 ">
 
+                            {% for product in products %}
                             <div class="col">
-                                <div class="product-card card rounded border-0">
-                                    <a href="#" class="position-relative">
-                                        <img src="asset/img/product1.jpeg" class="card-img-top" alt="...">
-                                        <div class="rating">  0.0 <i class="fa-solid fa-star"></i> | 00 </div>
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h5 class="card-title">ELITE Quality Contrast Panjabi I MP-181</h5>
-                                        </a>
-                                        <p class="price my-3">Tk 399 <span class="text-decoration-line-through price-delete">450</span></p>
-                                        <div class="text-center  mb-1"><button type="submit" class="btn btn-white ">Add to Card</button></div>
-                                    </div>
-                                </div>
+                                {% include 'components/product_card.html' %}
                             </div>
-                            <div class="col">
-                                <div class="product-card card rounded border-0">
-                                    <a href="#" class="position-relative">
-                                        <img src="asset/img/product2.jpeg" class="card-img-top" alt="...">
-                                        <div class="rating">  0.0 <i class="fa-solid fa-star"></i> | 00 </div>
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h5 class="card-title">ELITE Quality Contrast Panjabi I MP-181</h5>
-                                        </a>
-                                        <p class="price my-3">Tk 399 <span class="text-decoration-line-through price-delete">450</span></p>
-                                        <div class="text-center  mb-1"><button type="submit" class="btn btn-white ">Add to Card</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="product-card card rounded border-0">
-                                    <a href="#" class="position-relative">
-                                        <img src="asset/img/product3.jpeg" class="card-img-top" alt="...">
-                                        <div class="rating">  0.0 <i class="fa-solid fa-star"></i> | 00 </div>
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h5 class="card-title">ELITE Quality Contrast Panjabi I MP-181</h5>
-                                        </a>
-                                        <p class="price my-3">Tk 399 <span class="text-decoration-line-through price-delete">450</span></p>
-                                        <div class="text-center  mb-1"><button type="submit" class="btn btn-white ">Add to Card</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="product-card card rounded border-0">
-                                    <a href="#" class="position-relative">
-                                        <img src="asset/img/product4.jpeg" class="card-img-top" alt="...">
-                                        <div class="rating">  0.0 <i class="fa-solid fa-star"></i> | 00 </div>
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h5 class="card-title">ELITE Quality Contrast Panjabi I MP-181</h5>
-                                        </a>
-                                        <p class="price my-3">Tk 399 <span class="text-decoration-line-through price-delete">450</span></p>
-                                        <div class="text-center  mb-1"><button type="submit" class="btn btn-white ">Add to Card</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="product-card card rounded border-0">
-                                    <a href="#" class="position-relative">
-                                        <img src="asset/img/product5.jpeg" class="card-img-top" alt="...">
-                                        <div class="rating">  0.0 <i class="fa-solid fa-star"></i> | 00 </div>
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h5 class="card-title">ELITE Quality Contrast Panjabi I MP-181</h5>
-                                        </a>
-                                        <p class="price my-3">Tk 399 <span class="text-decoration-line-through price-delete">450</span></p>
-                                        <div class="text-center  mb-1"><button type="submit" class="btn btn-white ">Add to Card</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="product-card card rounded border-0">
-                                    <a href="#" class="position-relative">
-                                        <img src="asset/img/product1.jpeg" class="card-img-top" alt="...">
-                                        <div class="rating">  0.0 <i class="fa-solid fa-star"></i> | 00 </div>
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h5 class="card-title">ELITE Quality Contrast Panjabi I MP-181</h5>
-                                        </a>
-                                        <p class="price my-3">Tk 399 <span class="text-decoration-line-through price-delete">450</span></p>
-                                        <div class="text-center  mb-1"><button type="submit" class="btn btn-white ">Add to Card</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="product-card card rounded border-0">
-                                    <a href="#" class="position-relative">
-                                        <img src="asset/img/product2.jpeg" class="card-img-top" alt="...">
-                                        <div class="rating">  0.0 <i class="fa-solid fa-star"></i> | 00 </div>
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h5 class="card-title">ELITE Quality Contrast Panjabi I MP-181</h5>
-                                        </a>
-                                        <p class="price my-3">Tk 399 <span class="text-decoration-line-through price-delete">450</span></p>
-                                        <div class="text-center  mb-1"><button type="submit" class="btn btn-white ">Add to Card</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="product-card card rounded border-0">
-                                    <a href="#" class="position-relative">
-                                        <img src="asset/img/product3.jpeg" class="card-img-top" alt="...">
-                                        <div class="rating">  0.0 <i class="fa-solid fa-star"></i> | 00 </div>
-                                    </a>
-                                    
-                                    <div class="card-body">
-                                        <a href="#">
-                                            <h5 class="card-title">ELITE Quality Contrast Panjabi I MP-181</h5>
-                                        </a>
-                                        <p class="price my-3">Tk 399 <span class="text-decoration-line-through price-delete">450</span></p>
-                                        <div class="text-center  mb-1"><button type="submit" class="btn btn-white ">Add to Card</button></div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
+
 
                         </div>
                         <!-- product-cards-wrap end -->
