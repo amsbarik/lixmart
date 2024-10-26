@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.admin_panel',
     'apps.categories',
     'apps.products',
+    'apps.cart',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -88,6 +89,7 @@ TEMPLATES = [
                 
                 # custom context_processors
                 'apps.categories.context_processors.categories',
+                'apps.cart.context_processors.cart',
             ],
         },
     },

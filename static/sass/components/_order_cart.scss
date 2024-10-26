@@ -2,6 +2,7 @@
 @use "../partials/variables" as *;
 
 
+
 .order-cart-container{
     
     .order-cart-wrap{
@@ -12,10 +13,10 @@
         bottom: 0;
         left: 0;
         right: 0;
-        overflow: hidden;
         visibility: hidden;
         background: #1d1d1d70;
         z-index: 100;
+        overflow: hidden; // Keep overflow hidden here
 
         .order-cart{
             position: relative;
@@ -25,6 +26,7 @@
             position: fixed;
             right: 0;
             top: 0;
+            overflow-y: auto; // Ensure cart content can scroll if it overflows
 
             .cart-top{
                 height: 3.6rem;
@@ -70,19 +72,18 @@
                     font-size: 1rem;
                 }
             }
-            
+
         }
+
+    
     }
+
 
     .overlay{
         visibility: visible;
     }
 
 
-
-
-
-    
 
     // order-cart-box 
     .order-cart-box{

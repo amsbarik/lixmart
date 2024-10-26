@@ -28,6 +28,7 @@ urlpatterns = [
     path('user-auth/', include('apps.user_auth.urls')),
     path('categories/', include('apps.categories.urls')),
     path('products/', include('apps.products.urls')),
+    path('cart/', include('apps.cart.urls')),
 ]
 
 #for media

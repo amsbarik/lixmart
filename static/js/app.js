@@ -593,15 +593,15 @@ function fadeOut(element, duration = 400) {
 // Show cart popup
 function showOrderCart() {
     orderCartWrap.classList.add('overlay');
-    fadeIn(orderCartWrap, 500);
-    body.style.overflow = "hidden";
+    fadeIn(orderCartWrap, 400);
+    // body.style.overflow = "hidden";
 }
 
 // Hide cart popup
 function closeOrderCart() {
     orderCartWrap.classList.remove('overlay');
-    fadeOut(orderCartWrap, 500);
-    body.style.overflow = "auto";
+    fadeOut(orderCartWrap, 400);
+    // body.style.overflow = "auto";
 }
 
 

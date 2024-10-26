@@ -7,7 +7,6 @@ from django.template.loader import render_to_string
 from apps.user_auth.views import is_superuser
 from .forms import ProductForm
 from .models import Product, Category
-from .cart import  Cart
 
 
 # Create your views here.
@@ -33,102 +32,6 @@ def product_details(request, slug):
 #     return render(request, 'products/subcategory_dropdown_list_options.html', {'subcategories': subcategories})
 
 
-
-# add to cart view 
-# def add_to_cart(request, slug):
-#     product = get_object_or_404(Product, slug=slug)
-    
-#     # Check if the product is already in the cart
-#     cart_item, created = Cart.objects.get_or_create(
-#         user=request.user,
-#         product=product,
-#     )
-
-#     if not created:
-#         # If the product is already in the cart, increase the quantity
-#         cart_item.quantity += 1
-#         cart_item.save()
-
-#     return redirect('cart')  # Redirect to the cart page (or you can redirect back to the product or home page)
-
-
-# def add_to_cart(request):
-#     if request.method == 'POST' and request.is_ajax():
-#         product_id = request.POST.get('product_id')
-#         product = get_object_or_404(Product, id=product_id)
-        
-#         # Add or update the cart item
-#         cart_item, created = Cart.objects.get_or_create(user=request.user, product=product)
-#         if not created:
-#             cart_item.quantity += 1
-#             cart_item.save()
-        
-#         # Retrieve updated cart items
-#         cart_items = Cart.objects.filter(user=request.user)
-        
-#         # Render the updated cart HTML
-#         cart_html = render_to_string('cart_popup.html', {'cart_items': cart_items})
-        
-#         return JsonResponse({'cart_html': cart_html}, status=200)
-    
-#     return JsonResponse({'error': 'Invalid request'}, status=400)
-
-
-# def add_to_cart(request):
-#     if request.method == 'POST':
-#         slug = request.POST.get('slug')
-#         product = get_object_or_404(Product, slug=slug)
-        
-#         # Assuming you have a Cart class managing cart items
-#         cart = Cart(request)  # Assuming you're using a session-based cart
-#         cart.add(product)  # Logic to add the product to the cart
-        
-#         # Render the updated cart HTML (ensure this is correctly defined)
-#         cart_html = render_to_string('layouts/order_cart.html', {'cart': cart})
-        
-#         return JsonResponse({'cart_html': cart_html})
-#     return JsonResponse({'error': 'Invalid request'}, status=400)
-
-
-# def add_to_cart(request):
-#     if request.method == 'POST':
-#         slug = request.POST.get('slug')
-#         product = get_object_or_404(Product, slug=slug)
-
-#         # Create an instance of the cart
-#         cart = Cart(request)
-
-#         # Add the product to the cart
-#         cart.add(product)
-
-#         # Render the updated cart HTML
-#         cart_html = render_to_string('layouts/order_cart.html', {'cart': cart})
-
-#         # Send back the updated cart HTML in JSON format
-#         return JsonResponse({'cart_html': cart_html})
-
-#     return JsonResponse({'error': 'Invalid request'}, status=400)
-
-
-
-def add_to_cart(request, slug):
-    if request.method == 'POST':
-        # Fetch the slug from the POST request
-        slug = request.POST.get('slug')
-
-        # Retrieve the product based on the slug
-        product = get_object_or_404(Product, slug=slug)
-
-        # Get the cart from the session
-        cart = Cart(request)
-
-        # Add the product to the cart
-        cart.add(product=product)
-
-        # Return success with cart data (if required)
-        return JsonResponse({'status': 'success', 'message': f"{product.title} added to cart"})
-    
-    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
 
 
 

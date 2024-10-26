@@ -49,13 +49,20 @@
     
 
     <!-- order card box start  -->
+    <a href="{% url 'cart_summary' %}" class="btn btn-primary" style="position: fixed; top: 40%; right: 0;">
+        view cart 
+        
+    </a>
+
     <div class="order-cart-box position-fixed z-3" onclick="showOrderCart()" role="button">
         <div class="text-center">
             <img src="{% static 'img/shopping-icon.png' %}" alt="">
-            <h5 class="m-0 px-2">5 items</h5>
+            <h5 class="m-0 px-2"><span id="cart_quantity" style="color: white;">{{ cart | length }}</span> items</h5>
         </div>
         <h6 class="text-center px-2 m-0"><i class="fa-solid fa-bangladeshi-taka-sign me-1"></i> 2700</h6>
     </div>
+
+
 </div>
 <!-- order-cart end -->
 

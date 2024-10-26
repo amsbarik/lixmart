@@ -3,7 +3,6 @@ from .import views
 
 urlpatterns = [
     path('<slug:slug>/', views.product_details, name='product_details'),
-    path('add-to-cart/<slug:slug>/', views.add_to_cart, name='add_to_cart'),
     
     #  path('load-subcategories/', views.load_subcategories, name='load_subcategories'),
     

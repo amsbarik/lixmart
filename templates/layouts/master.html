@@ -11,6 +11,9 @@
     <!-- bootstrap cdn css link  -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
     
+    <!-- jquery cdn link  -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
     <!-- custom css link  -->
      <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
 
@@ -67,105 +70,32 @@
 
 
     <!-- AJAX for Adding to Cart js  -->
-  
-    
-<!--     
     <script>
-        function addToCart(slug) {
-    // Construct the URL using the slug
-    const url = `{% url 'add_to_cart' 'slug_placeholder' %}`.replace('slug_placeholder', slug);
-
-    // Use fetch or another method to send a request to the URL
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'X-CSRFToken': getCookie('csrftoken'), // Ensure you send the CSRF token if required
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ /* any data you need to send */ })
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Handle the response, e.g., update the cart popup
-        console.log(data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-
-// Function to get the CSRF token
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Check if this cookie string begins with the name we want
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-    </script> -->
-
+        // check if button pressed 
+        $(document).on('click', '#add-cart', function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "cart_add" %}',
+                data: {
+                    product_id: $('#add-cart').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post',
+                },
     
+                success: function(json){
+                    // console.log(json)
+                    document.getElementById("cart_quantity").textContent = json.qty
+                },
     
-
-
-
-
-    <script>
-        function addToCart(slug) {
-    // Construct the CSRF token
-    const csrftoken = getCookie('csrftoken');
+                error: function(xhr, errmsg, err){
     
-    const url = "{% url 'add_to_cart' 'slug_placeholder' %}";
-
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'X-CSRFToken': csrftoken,
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: `slug=${encodeURIComponent(slug)}`
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            alert(data.message);  // Display success message
-        } else {
-            alert(data.message);  // Display error message
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);  // Handle errors
-    });
-}
-
-
-
-
-// Helper function to get the CSRF token from the cookies
-function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
                 }
-            }
-            return cookieValue;
-        }
-
+    
+            });
+    
+        })
+    
     </script>
 
 
