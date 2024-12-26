@@ -15,32 +15,38 @@
                 </div>
             
                 <!-- product items start -->
-                {% for product_id, item in cart.cart.items %}
-                <div class="cart-item d-flex justify-content-between">
-                    <!-- qty plus minus -->
-                    <div class="qty-layout align-items-center text-center" style="min-width: 42px;">
-                        <button class="btn cart-plus text-dark"><i class="fa-solid fa-sort-up"></i></button>
-                        <input type="cart-input text" class="form-control p-0 cart-input text-center border-0" value="{{ item.quantity }}" readonly>
-                        <button class="btn cart-minus text-dark"><i class="fa-solid fa-sort-down"></i></button>
-                    </div>
-            
-                    <div class="card border-0">
-                        <div class="row g-0">
-                            <div class="col-3">
-                                <img src="{{ product.view_img.url }}" class="object-fit-cover" width="100%" height="100%" alt="...">
-                            </div>
-                            <div class="col-9">
-                                <div class="card-body py-0">
-                                    <h5 class="card-title m-0">{{ product.title }}</h5>
-                                    <p class="price m-0 p-0"><small class="text-dark">TK. {{ item.price }} </small></p>
+                {% if cart_products %}
+                    {% for product in cart_products %}
+                    <div class="cart-item d-flex justify-content-between">
+                        <!-- qty plus minus -->
+                        <div class="qty-layout align-items-center text-center" style="min-width: 42px;">
+                            <button class="btn cart-plus text-dark"><i class="fa-solid fa-sort-up"></i></button>
+                            <input type="cart-input text" class="form-control p-0 cart-input text-center border-0" value="{{ item.quantity }}" readonly>
+                            <button class="btn cart-minus text-dark"><i class="fa-solid fa-sort-down"></i></button>
+                        </div>
+
+                        <div class="card border-0">
+                            <div class="row g-0">
+                                <div class="col-3">
+                                    <img src="{{ product.view_img.url }}" class="object-fit-cover" width="100%" height="100%" alt="...">
+                                </div>
+                                <div class="col-9">
+                                    <div class="card-body py-0">
+                                        <h5 class="card-title m-0">{{ product.title }}</h5>
+                                        <p class="price m-0 p-0"><small class="text-dark">TK. {{ product.price }} </small></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <button class="btn p-0 pe-3 text-danger btn-delete">&#10005;</button>
+
                     </div>
-            
-                    <button class="btn p-0 pe-3 text-danger btn-delete">&#10005;</button>
-                </div>
-                {% endfor %}
+                    {% endfor %}
+
+                {% else %}
+                There is nothing in your cart...
+                {% endif %}
                 <!-- product items end -->
             </div>
         </form>

@@ -2,7 +2,7 @@ from django.urls import path
 from .import views
 
 urlpatterns = [
-    path('<slug:slug>/', views.product_details, name='product_details'),
+    
     
     #  path('load-subcategories/', views.load_subcategories, name='load_subcategories'),
     
@@ -11,5 +11,7 @@ urlpatterns = [
     path('form/', views.product_form, name='product_form'),
     path('update/<int:pk>/', views.product_form, name='product_update'),
     path('delete/<int:pk>/', views.product_delete, name='product_delete'),
+    
+    path('<slug:slug>/', views.product_details, name='product_details'),
     
 ]

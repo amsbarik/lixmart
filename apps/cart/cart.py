@@ -16,16 +16,17 @@ class Cart():
         self.cart = cart
         
         
-    def add(self, product):
+    def add(self, product, quantity):
         product_id = str(product.id)
+        product_qty = str(quantity)
         
         
         # Logic
         if product_id in self.cart:
             pass
-        
         else:
-            self.cart[product_id] = {'price': str(product.price)}
+            # self.cart[product_id] = {'price': str(product.price)}
+            self.cart[product_id] = int(product_qty)
             
         self.session.modified = True
         
@@ -43,3 +44,26 @@ class Cart():
         
         # return those looked up products 
         return products
+    
+    # get quantity 
+    def get_quants(self):
+        quantities = self.cart
+        return quantities
+    
+    def update(self, product, quantity):
+        product_id = str(product)
+        product_qty = int(quantity)
+        
+        # like {'4': 3, '2': 5}
+        
+        # Get cart 
+        ourcart = self.cart
+        # update dictionary/cart 
+        ourcart[product_id] = product_qty
+        
+        self.session.modified = True
+        
+        thing = self.cart
+        
+        return thing
+        

@@ -128,19 +128,32 @@
                                 
                             </div>
 
+                            <!-- test  -->
+                            <select name="" id="qty-cart"  class="form-select form-select-sm  my-2">
+                           
+                          
+                                <option selected value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <!-- test  -->
+                             
                             <!-- qty start  -->
                             <div class="row qty-select g-3 mt-xl-2">
                                 <div class=" col-auto  me-4 me-xl-5">
                                     <div class="qty-controls border rounded d-flex align-items-center">
-                                        <button class="btn qty-minus">-</button>
+                                        <div class="btn qty-minus">-</div>
                                         <input type="text" class="form-control qty-input mx-1 border-0" value="1" readonly>
-                                        <button class="btn qty-plus">+</button>
+                                        <div class="btn qty-plus">+</div>
                                     </div>
                                 </div>
 
-                                <button class="col-5 ms-2 ms-lg-0 col-lg-auto btn btn-white me-4 px-4" type="submit">Add to Card</button>
+                                <button class="col-5 ms-2 ms-lg-0 col-lg-auto btn btn-white me-4 px-4" id="add-to-cart" value="{{ product.id }}">Add to Card</button>
                                 <button class="col-5 col-lg-auto btn btn-primary px-4" type="submit">Order Now</button>
                             </div>
+
+                            
 
                             <hr>
                             <!-- call and share + -->

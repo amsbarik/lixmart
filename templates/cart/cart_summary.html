@@ -8,7 +8,8 @@
 
 {% block content %}
 
-<h3 style="margin: 200px 0; ">Cart Summary </h3>
+<div class="container">
+    <h3 style="margin: 200px 0; ">Cart Summary </h3>
 
 <br>
 <br>
@@ -17,15 +18,31 @@
 <!-- product items start -->
  {% if cart_products %}
     {% for product in cart_products %}
-    <div class="cart-item d-flex justify-content-between">
+    <div class="cart-item mb-3 d-flex justify-content-between border
+    " >
         <!-- qty plus minus -->
         <div class="qty-layout align-items-center text-center" style="min-width: 42px;">
             <button class="btn cart-plus text-dark"><i class="fa-solid fa-sort-up"></i></button>
-            <input type="cart-input text" class="form-control p-0 cart-input text-center border-0" value="{{ item.quantity }}" readonly>
+            <input  type="text" class="form-control p-0 text-dark cart-input text-center border-0" value="{{ item.quantity }}" readonly>
             <button class="btn cart-minus text-dark"><i class="fa-solid fa-sort-down"></i></button>
         </div>
 
-        <div class="card border-0">
+        <div style="width: 220px;">
+            <select class="form-select form-select-sm" name="" id="select{{product.id}}">
+                
+                {% for key, value in quantities.items %}
+                    {% if key == product.id|slugify %}
+                    <option value="" selected>{{ value }}</option>
+                    {% endif %}
+                {% endfor %}
+                
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+
+        <div class="card border-0" style="height: 220px;">
             <div class="row g-0">
                 <div class="col-3">
                     <img src="{{ product.view_img.url }}" class="object-fit-cover" width="100%" height="100%" alt="...">
@@ -41,11 +58,14 @@
 
         <button class="btn p-0 pe-3 text-danger btn-delete">&#10005;</button>
 
+        <!-- update-cart -->
+        <button type="button" data-index="{{product.id}}" class="btn btn-dark update-cart">Update</button>
+
     </div>
     {% endfor %}
 
 {% else %}
-There is nothing in your cart...
+Your Cart is Empty...
 {% endif %}
 <!-- product items end -->
 
@@ -55,6 +75,7 @@ There is nothing in your cart...
 <br>
 <br>
 <br>
+</div>
 
 {% endblock content %}
 

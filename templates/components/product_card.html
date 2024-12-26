@@ -12,8 +12,21 @@
         </a>
         <p class="price my-3">{{ product.discount_price | floatformat:"-2" }} <span class="text-decoration-line-through price-delete">{{ product.price | floatformat:"-2" }}</span></p>
         
+        <!-- test  -->
+        <!-- <select name="" id="qty-cart"  class="form-select form-select-sm  my-2">
+                          
+            <option selected value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select> -->
+        <!-- test  -->
+
+        
         <div class="text-center mb-1">
-            <button type="button" class="btn btn-white" value="{{ product.id }}" id="add-cart">Add to Cart</button>
+            <!-- <button type="button" class="btn btn-white" value="{{ product.id }}" id="add-cart">Add to Cart</button> -->
+            <button type="button" class="btn btn-white add-to-cart" value="{{ product.id }}">Add to Cart</button>
+
         </div>
         
     </div>
