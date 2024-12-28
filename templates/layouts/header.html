@@ -1,5 +1,9 @@
 {% load static %}
-
+<style>
+    .dropdown-toggle::after{
+        display: none;
+    }
+</style>
 <!--Main Navigation start-->
 <header>
     <div class="header-top">
@@ -28,7 +32,18 @@
                         <li class="mx-3 position-relative"><i class="fa-regular fa-bookmark"></i> 
                             <span class="position-absolute badge rounded-circle" id="cart_quantity">{{ cart | length}}</span>
                         </li>
-                        <li><i class="fa-solid fa-user ms-2"></i></li>
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-user ms-2"></i>
+                            </a>
+                        
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'update_user' %}">Profile Update</a></li>
+                                <li><a class="dropdown-item" href="{% url 'change_password' %}">Password Change</a></li>
+                            </ul>
+                        
+                        </li>
                     </ul>
                 </div>
     

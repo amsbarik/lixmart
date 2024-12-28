@@ -7,6 +7,10 @@
 <!-- {% block css %} js here {% endblock css %} -->
 
 {% block content %}
+
+{% if message in messages %}
+<div style="margin-top: 200px;">{{ message }}</div>
+{% endif %}
 <!-- ptoduct-details start  -->
 <section class="ptoduct-details mb-5" style="margin-top: 120px;">
     <div class="container">
@@ -71,8 +75,11 @@
                     <form action="">
                         <div class="product-info">
                             <h1 class="product-title">{{ product.title }}</h1>
-                            <h2 class="mt-3 price">{{ product.discount_price | floatformat:"-2" }} <span class="text-decoration-line-through text-danger">{{ product.price | floatformat:"-2" }}</span></h2> 
-
+                            {% if product.discount_price is None %}
+                            <h2 class="mt-3 price">{{ product.price | floatformat:"-2" }}Tk</h2> 
+                            {% else %}
+                            <h2 class="mt-3 price">{{ product.discount_price | floatformat:"-2" }}Tk <span class="text-decoration-line-through text-danger">{{ product.price | floatformat:"-2" }}Tk</span></h2> 
+                            {% endif %}
                             <div class="rating">
                                 0.0 <i class="fa-solid fa-star"></i> | 0 Reviews
                             </div>

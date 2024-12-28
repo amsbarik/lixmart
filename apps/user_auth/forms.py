@@ -1,6 +1,8 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from .models import Team, Role, Gender, UserSetting
 
@@ -42,9 +44,6 @@ class TeamForm(forms.ModelForm):
             return join_date
         
         
-        
-        
-    
 # user sttings form /////////////////////////////////////
 class UserProfileSettingForm(forms.ModelForm):
     class Meta:
@@ -161,3 +160,38 @@ class UserGeneralSettingForm(forms.ModelForm):
         self.helper.add_input(Submit('submit', 'save'))
             
             
+
+
+# update user form 
+# class UpdateUserForm(UserChangeForm):
+#     email = forms.EmailField(label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
+#     first_name = forms.CharField(label='', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+#     last_name = forms.CharField(label='', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    
+#     class Meta:
+#         model: User 
+#         fields = ('username', 'first_name', 'last_name', 'email')
+        
+#     def __init__(self, *args, **kwargs):
+#         super(UpdateUserForm, self).__init__(*args, **kwargs)
+        
+#         self.fields['username'].widget.attrs['class'] = 'form-control'
+        
+class UpdateUserForm(UserChangeForm):
+    # hide password 
+    password = None
+    
+    email = forms.EmailField(label='', widget=forms.TextInput(attrs={'class': 'form-control'}) )
+    first_name = forms.CharField(label='', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}) )
+    last_name = forms.CharField( label='',  max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}) )
+
+    class Meta:
+        model = User  # Fixed from `model: User` to `model = User`
+        fields = ('username', 'first_name', 'last_name', 'email')
+
+    def __init__(self, *args, **kwargs):
+        super(UpdateUserForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['first_name'].widget.attrs['class'] = 'form-control'
+        self.fields['last_name'].widget.attrs['class'] = 'form-control'
+        self.fields['email'].widget.attrs['class'] = 'form-control'

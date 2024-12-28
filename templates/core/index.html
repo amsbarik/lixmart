@@ -8,6 +8,17 @@
 
 <!-- main content start -->
 {% block content %}
+ 
+{% if messages %}
+<div class="messages" style="position: fixed; right: 16px; top: 16px; z-index: 100;">
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
 
     <!-- top sliders start  -->
     <section class="top-slide pb-4">
@@ -60,6 +71,8 @@
             </div>
         </div>
     </section>
+
+
 
     <!-- categories start  -->
     <section class="categories" >

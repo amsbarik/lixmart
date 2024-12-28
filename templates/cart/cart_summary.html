@@ -50,19 +50,33 @@
                 <div class="col-9">
                     <div class="card-body py-0">
                         <h5 class="card-title m-0">{{ product.title }}</h5>
-                        <p class="price m-0 p-0"><small class="text-dark">TK. {{ product.price }} </small></p>
+                        {% if product.discount_price is None %}
+                        <p class="price m-0 p-0"><small class="text-dark">TK. {{ product.price }}Tk </small></p>
+                        {% else %}
+                        <p class="price m-0 p-0"><small class="text-dark">TK. {{ product.discount_price }}Tk </small></p>
+                        <p class="price m-0 p-0"><small class="text-dark text-decoration-line-through text-danger">TK. {{ product.price }}Tk </small></p>
+                        {% endif%}
                     </div>
                 </div>
             </div>
         </div>
 
-        <button class="btn p-0 pe-3 text-danger btn-delete">&#10005;</button>
+        <!-- delete item -->
+        <!-- <button class="btn p-0 pe-3 text-danger btn-delete">&#10005;</button> -->
+        <button type="button" data-index="{{product.id}}" class="btn p-0 pe-3 text-danger delete-product">&#10005;</button>
 
         <!-- update-cart -->
+       
         <button type="button" data-index="{{product.id}}" class="btn btn-dark update-cart">Update</button>
 
     </div>
     {% endfor %}
+
+    <h3>Total: ${{ totals}} </h3>
+
+    <br>
+    <br>
+    <br>
 
 {% else %}
 Your Cart is Empty...

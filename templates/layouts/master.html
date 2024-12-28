@@ -64,7 +64,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <!-- boostrap js link  -->
-    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script> -->
+     
     <!-- custom js link  -->
     <script src="{% static 'js/app.js' %}"></script>
 
@@ -91,6 +92,7 @@
                 success: function(json) {
                     // Update cart quantity in the DOM
                     document.getElementById("cart_quantity").textContent = json.qty;
+                    location.reload();
                 },
                 error: function(xhr, errmsg, err) {
                     console.error(errmsg);
@@ -118,6 +120,39 @@
                     product_id: $(this).data('index'),
                     product_qty: $('#select' + productid + ' option:selected').text(),
                     // product_qty: $('#qty-cart'),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post',
+                },
+                success: function(json) {
+                    // Update cart quantity in the DOM
+                    // document.getElementById("cart_quantity").textContent = json.qty;
+                    location.reload();
+                },
+                error: function(xhr, errmsg, err) {
+                    console.error(errmsg);
+                }
+            });
+        });
+    </script>
+
+    <!-- delete product from cart js start  -->
+    <script>
+        // Check if button pressed
+        $(document).on('click', '.delete-product', function(e) {
+            e.preventDefault();
+
+            // grab the product id 
+            // var productid = $(this).data('index');
+            
+            // Get the product ID from the clicked button
+            let product_id = $(this).val();
+    
+            $.ajax({
+                type: 'POST',
+                url: '{% url "cart_delete" %}',
+                data: {
+                    product_id: $(this).data('index'),
+                    
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                     action: 'post',
                 },

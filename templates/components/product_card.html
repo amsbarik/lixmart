@@ -10,8 +10,11 @@
         <a href="{% url 'product_details' slug=product.slug %}">
             <h5 class="card-title">{{ product.title }}</h5>
         </a>
-        <p class="price my-3">{{ product.discount_price | floatformat:"-2" }} <span class="text-decoration-line-through price-delete">{{ product.price | floatformat:"-2" }}</span></p>
-        
+        {% if product.discount_price is None %}
+        <p class="price my-3">{{ product.price | floatformat:"-2" }}Tk</p>
+        {% else %}
+        <p class="price my-3">{{ product.discount_price | floatformat:"-2" }}Tk <span class="text-decoration-line-through price-delete">{{ product.price | floatformat:"-2" }}Tk</span></p>
+        {% endif %}
         <!-- test  -->
         <!-- <select name="" id="qty-cart"  class="form-select form-select-sm  my-2">
                           

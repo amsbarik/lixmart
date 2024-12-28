@@ -14,4 +14,8 @@ urlpatterns = [
     # single filed urls 
     path('account/photo/update/<int:pk>/', views.user_photo_form, name='user_photo_form'),
     
+    # update user 
+    path('update-user', views.update_user, name='update_user'),
+    path('change-password/', views.change_password, name='change_password'),
+    
 ]

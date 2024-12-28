@@ -72,6 +72,8 @@ MIDDLEWARE = [
     
 ]
 
+LOGIN_URL = '/login/'
+
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [

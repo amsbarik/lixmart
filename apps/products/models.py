@@ -130,6 +130,7 @@ class Product(CoreModel):
     description = models.TextField()
     shipping_txt = models.TextField(default='shipping policy')
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    is_sale = models.BooleanField(default=False)
     discount_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     rating = models.DecimalField(max_digits=3, decimal_places=1, default=0.0, blank=True)
     total_reviews = models.IntegerField(default=0, blank=True)

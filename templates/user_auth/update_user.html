@@ -1,0 +1,38 @@
+{% extends "layouts/master.html" %}
+{% load static %}
+
+
+{% block title %} Update Profile {% endblock title %}
+
+<!-- {% block css %} js here {% endblock css %} -->
+
+{% block content %}
+
+
+
+
+<div class="container" style="margin-top: 200px;">
+
+    <!-- {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert text-dark {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %} -->
+
+    <h1 class="mt-5"> Update Profile</h1>
+
+    <form method="POST" action="{% url 'update_user' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+
+    </form>
+</div>
+{% endblock content %}
